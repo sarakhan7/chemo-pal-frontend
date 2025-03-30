@@ -1,65 +1,59 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/formStyles.css'; // Correct path to form styles
+import { useNavigate } from 'react-router-dom';  // Make sure to import useNavigate
 
-const FormPage1 = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: ''
-  });
+import '../styles/formStyles.css';  // Import your styles
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+function FormPage1() {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const navigate = useNavigate();  // Initialize navigate
 
-  const handleNext = () => {
-    navigate('/formpage2');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (name && phone && email) {
+      // After successful form validation, navigate to FormPage2
+      navigate('/form-page-2');
+    } else {
+      alert('Please fill out all fields');
+    }
   };
 
   return (
-    <div className="form-page">
-      <h2>Personal Information</h2>
-      <form>
-        <div className="form-input">
-          <label>Name:</label>
+    <div className="container fadeIn">
+      <h1>Welcome! Please provide your information</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Name</label>
           <input 
             type="text" 
-            name="name" 
-            value={formData.name} 
-            onChange={handleChange} 
-            required 
+            value={name} 
+            onChange={(e) => setName(e.target.value)} 
+            required
           />
         </div>
-        <div className="form-input">
-          <label>Phone Number:</label>
+        <div>
+          <label>Phone Number</label>
           <input 
-            type="text" 
-            name="phone" 
-            value={formData.phone} 
-            onChange={handleChange} 
-            required 
+            type="tel" 
+            value={phone} 
+            onChange={(e) => setPhone(e.target.value)} 
+            required
           />
         </div>
-        <div className="form-input">
-          <label>Email:</label>
+        <div>
+          <label>Email</label>
           <input 
             type="email" 
-            name="email" 
-            value={formData.email} 
-            onChange={handleChange} 
-            required 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            required
           />
         </div>
-        <button type="button" onClick={handleNext}>Next</button>
+        <button type="submit">Next</button>
       </form>
     </div>
   );
-};
+}
 
 export default FormPage1;

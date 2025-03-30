@@ -1,102 +1,62 @@
-/* Global Styles */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
 }
 
-h1, h2, h3 {
-  color: #2c3e50;
-  font-weight: 600;
-}
-
-a {
-  text-decoration: none;
-  color: #1abc9c;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: #16a085;
-}
-
-/* Center all content inside the container */
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 80%;
+  margin: auto;
   padding: 20px;
-  width: 100%;
-  max-width: 1200px; /* Max width for a polished look */
-}
-
-.section {
-  margin-bottom: 30px;
-  width: 100%;
-  max-width: 500px;
   text-align: center;
 }
 
 button {
-  background-color: #16a085;
-  border: none;
+  background-color: green;
   color: white;
-  padding: 15px 30px;
-  font-size: 1.2em;
-  border-radius: 25px;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 20px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  width: 100%;
-  max-width: 200px;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #1abc9c;
-  transform: scale(1.05);
+  background-color: darkgreen;
 }
 
-button:active {
-  transform: scale(1.02);
+h1, h2 {
+  color: #2e8b57;
 }
 
-/* Smooth appearance for success message */
-.success-message {
-  color: #2ecc71;
-  font-size: 1.3em;
-  font-weight: 600;
-  text-align: center;
-  margin-top: 20px;
-  opacity: 0;
-  transition: opacity 0.5s ease-in;
-}
-
-.success-message.hidden {
-  opacity: 0;
-}
-
-.success-message:not(.hidden) {
-  opacity: 1;
-}
-
-/* For smoother user experience */
-input, select, textarea {
-  font-size: 1.1em;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  margin: 15px 0;
+input, textarea, select {
   width: 100%;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-input:focus, select:focus, textarea:focus {
-  border-color: #16a085;
-  box-shadow: 0 0 10px rgba(22, 160, 133, 0.5);
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.checkbox-list {
+  max-height: 300px;
+  overflow-y: scroll;
+  margin-bottom: 20px;
+}
+
+.fadeIn {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

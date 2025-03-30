@@ -1,17 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/global.css'; // Global styles for the whole site
+import '../styles/global.css';
 
-const Home = () => {
+function Home() {
   return (
-    <div className="home">
-      <h2>Welcome to Chemo-Pal</h2>
-      <p>We provide easy-to-use tools for cancer patients to track symptoms and communicate with healthcare providers.</p>
-      <Link to="/formpage1">Start the Form</Link>
-      <br />
-      <Link to="/aboutus">Learn More About Us</Link>
+    <div className="container fadeIn">
+      <h1>Welcome to Chemo-Pal!</h1>
+      <p>Your companion in cancer care. We're here to make your journey easier and more comfortable.</p>
+      <p>
+        <strong>Sign up</strong> and get started with personalized support.
+      </p>
+      <button onClick={() => window.location.href = "/about-us"}>Learn More About Us</button>
+      <button className="signup-btn" onClick={() => window.location.href = "/form-page-1"}>Sign Up</button>
     </div>
   );
-};
+}
 
 export default Home;

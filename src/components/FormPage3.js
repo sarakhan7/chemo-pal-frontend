@@ -1,49 +1,63 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Ensure useNavigate is imported
+import '../styles/formStyles.css'; // Import styles for form
 
-const symptoms = [
-  'Fatigue', 'Nausea', 'Hair Loss', 'Pain', 'Anxiety', 'Depression', 
-  'Loss of Appetite', 'Insomnia', 'Difficulty Breathing', 'Swelling', 
-  'Mouth Sores', 'Vomiting', 'Dizziness', 'Diarrhea', 'Constipation', 
-  'Headaches', 'Chills', 'Weight Loss', 'Fever', 'Coughing', 'Sore Throat', 
-  'Skin Rash', 'Back Pain', 'Muscle Aches', 'Joint Pain', 'Dysphagia'
-];
-
-const FormPage3 = () => {
+function FormPage3() {
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
+  const navigate = useNavigate(); // Initialize navigate
 
-  const handleCheckboxChange = (event) => {
-    const { name } = event.target;
-    setSelectedSymptoms((prev) =>
-      prev.includes(name)
-        ? prev.filter((symptom) => symptom !== name)
-        : [...prev, name]
+  const symptoms = [
+    'Nausea', 'Fatigue', 'Hair Loss', 'Appetite Loss', 'Pain', 
+    'Anxiety', 'Depression', 'Insomnia', 'Dizziness', 'Fever', 
+    'Shortness of Breath', 'Swelling', 'Bruising', 'Weight Loss', 
+    'Dry Skin', 'Rashes', 'Heart Palpitations', 'Loss of Taste', 
+    'Loss of Smell', 'Digestive Issues', 'Mouth Sores', 'Other'
+  ];
+
+  // Handle checkbox selection
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setSelectedSymptoms((prevSelected) =>
+      prevSelected.includes(value)
+        ? prevSelected.filter((item) => item !== value)  // Remove from list
+        : [...prevSelected, value]  // Add to list
     );
   };
 
-  const handleSubmit = () => {
-    alert("Successfully registered.");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (selectedSymptoms.length > 0) {
+      // After successful submission, redirect to a confirmation page
+      alert('Thank you for submitting your symptoms!');
+      navigate('/');  // You can redirect to another page if needed
+    } else {
+      alert('Please select at least one symptom');
+    }
   };
 
   return (
-    <div className="form-page3">
-      <h2>Step 3: Select Symptoms</h2>
-      <div className="scrollable-checkboxes">
-        {symptoms.map((symptom) => (
-          <div key={symptom}>
-            <input
-              type="checkbox"
-              id={symptom}
-              name={symptom}
-              onChange={handleCheckboxChange}
-            />
-            <label htmlFor={symptom}>{symptom}</label>
-          </div>
-        ))}
-      </div>
-      <button onClick={handleSubmit}>Submit</button>
-      <div className="success-message hidden">Successfully registered.</div>
+    <div className="container fadeIn">
+      <h1>Check all symptoms you are experiencing</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="scrollable-list">
+          {symptoms.map((symptom, index) => (
+            <div key={index} className="checkbox-item">
+              <label>
+                <input
+                  type="checkbox"
+                  value={symptom}
+                  onChange={handleChange}
+                  checked={selectedSymptoms.includes(symptom)}
+                />
+                {symptom}
+              </label>
+            </div>
+          ))}
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
-};
+}
 
 export default FormPage3;

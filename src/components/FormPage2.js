@@ -1,75 +1,68 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/formStyles.css'; // Correct path to form styles
+import { useNavigate } from 'react-router-dom';  // Ensure useNavigate is imported
 
-const FormPage2 = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    ethnicity: '',
-    age: '',
-    gender: '',
-    medicalHistory: ''
-  });
+import '../styles/formStyles.css';  // Import your styles
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+function FormPage2() {
+  const [ethnicity, setEthnicity] = useState('');
+  const [age, setAge] = useState('');
+  const [gender, setGender] = useState('');
+  const [medicalHistory, setMedicalHistory] = useState('');
+  const navigate = useNavigate();  // Initialize navigate
 
-  const handleNext = () => {
-    navigate('/formpage3');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (ethnicity && age && gender && medicalHistory) {
+      // After successful form validation, navigate to FormPage3
+      navigate('/form-page-3');
+    } else {
+      alert('Please fill out all fields');
+    }
   };
 
   return (
-    <div className="form-page">
-      <h2>Medical and Personal Information</h2>
-      <form>
-        <div className="form-input">
-          <label>Ethnicity:</label>
+    <div className="container fadeIn">
+      <h1>Tell us a bit more about yourself</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Ethnicity</label>
           <input 
             type="text" 
-            name="ethnicity" 
-            value={formData.ethnicity} 
-            onChange={handleChange} 
-            required 
+            value={ethnicity} 
+            onChange={(e) => setEthnicity(e.target.value)} 
+            required
           />
         </div>
-        <div className="form-input">
-          <label>Age:</label>
+        <div>
+          <label>Age</label>
           <input 
             type="number" 
-            name="age" 
-            value={formData.age} 
-            onChange={handleChange} 
-            required 
+            value={age} 
+            onChange={(e) => setAge(e.target.value)} 
+            required
           />
         </div>
-        <div className="form-input">
-          <label>Gender:</label>
+        <div>
+          <label>Gender</label>
           <input 
             type="text" 
-            name="gender" 
-            value={formData.gender} 
-            onChange={handleChange} 
-            required 
+            value={gender} 
+            onChange={(e) => setGender(e.target.value)} 
+            required
           />
         </div>
-        <div className="form-input">
-          <label>Medical History:</label>
+        <div>
+          <label>Medical History</label>
           <textarea 
-            name="medicalHistory" 
-            value={formData.medicalHistory} 
-            onChange={handleChange} 
-            required 
+            value={medicalHistory} 
+            onChange={(e) => setMedicalHistory(e.target.value)} 
+            required
           />
         </div>
-        <button type="button" onClick={handleNext}>Next</button>
+        <button type="submit">Next</button>
       </form>
     </div>
   );
-};
+}
 
 export default FormPage2;
