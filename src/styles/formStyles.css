@@ -1,0 +1,66 @@
+/* Styling for the checkboxes in FormPage3 */
+.scrollable-checkboxes {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  transition: border 0.3s ease;
+}
+
+.scrollable-checkboxes input {
+  margin-right: 10px;
+}
+
+.scrollable-checkboxes label {
+  font-size: 1.1em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.scrollable-checkboxes::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-checkboxes::-webkit-scrollbar-thumb {
+  background-color: #1abc9c;
+  border-radius: 10px;
+}
+
+.scrollable-checkboxes::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+}
+
+/* Form fields in general */
+input, select, textarea {
+  padding: 12px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin: 15px 0;
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #16a085;
+  box-shadow: 0 0 10px rgba(22, 160, 133, 0.5);
+}
+
+/* Aesthetic Checkboxes in the form */
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.checkbox-container label {
+  margin: 10px 0;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: 10px;
+}
